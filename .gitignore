@@ -1,0 +1,7 @@
+client_secret.json
+*.pyc
+instance/
+tests.py
+.idea/
+.vscode/
+venv/

@@ -1,0 +1,58 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Listing Sources{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Listing Sources</h1>
+        {% if listingsources %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th> Edit </th>
+                  <th> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for listingsource in listingsources %}
+                <tr>
+                  <td>{{ listingsource.description }}</td>
+                  <td>
+                    <a href="{{ url_for('admin.edit_listing_source', id=listingsource.id) }}">
+                      <i class="fa fa-pencil"></i> Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.delete_listing_source', id=listingsource.id) }}">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No listing sources have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+          <a href="{{ url_for('admin.add_listing_source') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+            Add Listing Source
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
