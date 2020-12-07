@@ -5,3 +5,5 @@ tests.py
 .idea/
 .vscode/
 venv/
+.env
+app.db

@@ -8,22 +8,15 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 # local imports
-from config import app_config
+from config import Config
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 
 
-def create_app(config_name):
-    if os.getenv('FLASK_CONFIG') == "production":
-        app = Flask(__name__)
-        app.config.update(
-            SECRET_KEY=os.getenv('SECRET_KEY'),
-            SQLALCHEMY_DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI')
-        )
-    else:
-        app = Flask(__name__, instance_relative_config=True)        
-        app.config.from_pyfile('config.py')
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
     Bootstrap(app)
     db.init_app(app)
