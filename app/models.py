@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
     """
     Create a User 
     """
+    __table_args__ = {'mysql_engine':'InnoDB', 'mysql_charset':'utf8','mysql_collate':'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(60), index=True, unique=True)
@@ -69,7 +70,9 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-class ListingSource(db.Model): 
+class ListingSource(db.Model):
+    __table_args__ = {'mysql_engine':'InnoDB', 'mysql_charset':'utf8','mysql_collate':'utf8_general_ci'}
+
     id = db.Column(db.Integer, primary_key=True) 
     description = db.Column(db.String(100), unique=True)
 
@@ -77,7 +80,10 @@ class ListingSource(db.Model):
         return self.id
     
 
-class Listing(db.Model):  
+class Listing(db.Model):
+
+    __table_args__ = {'mysql_engine':'InnoDB', 'mysql_charset':'utf8','mysql_collate':'utf8_general_ci'}
+
     id = db.Column(db.Integer, primary_key=True) 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True) 
     listing_date = db.Column(db.Date, index=True) 

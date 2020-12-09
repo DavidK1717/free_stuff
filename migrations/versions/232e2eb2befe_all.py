@@ -1,8 +1,8 @@
-"""empty message
+"""all
 
-Revision ID: 685b349b7849
+Revision ID: 232e2eb2befe
 Revises: 
-Create Date: 2020-12-09 18:28:39.768306
+Create Date: 2020-12-09 20:41:54.431157
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '685b349b7849'
+revision = '232e2eb2befe'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('description')
+    sa.UniqueConstraint('description'),
+    mysql_charset='utf8',
+    mysql_collate='utf8_general_ci',
+    mysql_engine='InnoDB'
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -32,7 +35,10 @@ def upgrade():
     sa.Column('last_name', sa.String(length=60), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
     sa.Column('is_admin', sa.Boolean(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    mysql_charset='utf8',
+    mysql_collate='utf8_general_ci',
+    mysql_engine='InnoDB'
     )
     op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
     op.create_index(op.f('ix_user_first_name'), 'user', ['first_name'], unique=False)
@@ -54,7 +60,10 @@ def upgrade():
     sa.Column('modified_date', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['source_id'], ['listing_source.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    mysql_charset='utf8',
+    mysql_collate='utf8_general_ci',
+    mysql_engine='InnoDB'
     )
     op.create_index(op.f('ix_listing_listing_date'), 'listing', ['listing_date'], unique=False)
     op.create_index(op.f('ix_listing_user_id'), 'listing', ['user_id'], unique=False)
