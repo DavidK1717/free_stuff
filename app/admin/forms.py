@@ -28,7 +28,7 @@ class ListingForm(FlaskForm):
 
 class ListingSourceForm(FlaskForm):
     description = TextAreaField('Description',
-                            validators=[DataRequired(), Length(min=5, max=60)])
+                            validators=[DataRequired(), Length(min=5, max=100)])
     submit = SubmitField('Submit')  
 
 class AddUserForm(FlaskForm):

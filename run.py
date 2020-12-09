@@ -6,6 +6,11 @@ app = create_app()
 application = app
 
 
+# for debugging in PyCharm and VS Code. Should only be in development version
+if __name__ == '__main__':
+     app.run(debug=True, use_debugger=False, use_reloader=False, passthrough_errors=True)
+
+
 @app.shell_context_processor
 def make_shell_context():
     return {'db': db, 'User': User, 'ListingSource': ListingSource,
