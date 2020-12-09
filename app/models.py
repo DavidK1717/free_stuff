@@ -91,6 +91,7 @@ class Listing(db.Model):
     outgoing = db.Column(db.Boolean, default=False)
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
     modified_date= db.Column(db.DateTime, default=datetime.utcnow)
+    notes = db.Column(db.String(200))
     source_name = db.column_property(
         db.select(
             [ListingSource.description],
