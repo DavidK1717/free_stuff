@@ -69,7 +69,7 @@ def add_listing():
         sheet = client.open("Listings").sheet1
 
         row = [listing.id, current_user.username, form.listing_date.data.isoformat(), form.source_id.data.description,
-               form.description.data, form.name.data, form.address_1.data, form.email.data, form.address_2.data,
+               form.description.data, form.name.data, form.email.data, form.address_1.data, form.address_2.data,
                form.post_code.data, form.outgoing.data, json_serial(listing.created_date),
                json_serial(listing.modified_date)]
         index = 2
